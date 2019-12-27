@@ -6,6 +6,17 @@ import AbstractChart from "./abstract-chart";
 const Pie = require("paths-js/pie");
 
 class ProgressChart extends AbstractChart {
+  highColors = [
+    "rgba(156, 29, 45, 0.8)",
+    "rgba(32, 29, 47, 0.8)",
+    "rgba(98, 115, 122, 0.8)"
+  ];
+  lowColors = [
+    "rgba(156, 29, 45, 0.2)",
+    "rgba(32, 29, 47, 0.2)",
+    "rgba(98, 115, 122, 0.2)"
+  ];
+
   render() {
     const { width, height, style = {}, data, hideLegend } = this.props;
     const { borderRadius = 0, margin = 0, marginRight = 0 } = style;
@@ -53,7 +64,7 @@ class ProgressChart extends AbstractChart {
                 key={Math.random()}
                 width="16px"
                 height="16px"
-                fill={this.props.chartConfig.color(0.2 * (i + 1), i)}
+                fill={this.highColors[i]}
                 rx={8}
                 ry={8}
                 x={this.props.width / 2.5 - 24}
@@ -77,7 +88,7 @@ class ProgressChart extends AbstractChart {
                   ((this.props.height * 0.8) / data.data.length) * i +
                   12 * 2
                 }
-                {...this.getPropsForLabels()}
+                // {...this.getPropsForLabels()}
               >
                 {withLabel(i)
                   ? `${data.labels[i]} ${Math.round(100 * data.data[i])}%`
@@ -119,7 +130,7 @@ class ProgressChart extends AbstractChart {
                     key={Math.random()}
                     d={pie.curves[0].sector.path.print()}
                     strokeWidth={16}
-                    stroke={this.props.chartConfig.color(0.2, i)}
+                    stroke={this.lowColors[i]}
                   />
                 );
               })}
@@ -133,10 +144,7 @@ class ProgressChart extends AbstractChart {
                     strokeLinejoin="round"
                     d={pie.curves[0].sector.path.print()}
                     strokeWidth={16}
-                    stroke={this.props.chartConfig.color(
-                      (i / pies.length) * 0.5 + 0.5,
-                      i
-                    )}
+                    stroke={this.highColors[i]}
                   />
                 );
               })}
