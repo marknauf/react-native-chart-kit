@@ -1,6 +1,7 @@
 {
-  "name": "react-native-chart-kit",
+  "name": "@marknauf/react-native-chart-kit",
   "version": "4.3.0",
+  "repository": "https://github.com/marknauf/react-native-chart-kit",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
