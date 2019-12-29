@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import { Svg, Rect, G } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
 
@@ -43,18 +43,43 @@ class BarChart extends AbstractChart {
     return data.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
       const barWidth = 32 * this.getBarPercentage();
+      console.log("BAR HEIGHT: ", barHeight);
+      console.log("BAR WIDTH: ", barWidth);
+      console.log("BASE HEIGHT: ", baseHeight);
       return (
-        <Rect
+        // <Rect
+        //   key={Math.random()}
+        //   x={
+        //     paddingRight +
+        //     (i * (width - paddingRight)) / data.length +
+        //     barWidth / 2
+        //   }
+        //   y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
+        //   width={barWidth}
+        //   height={2}
+        //   fill="#00b5ff"
+        // />
+        <Image
           key={Math.random()}
-          x={
-            paddingRight +
-            (i * (width - paddingRight)) / data.length +
-            barWidth / 2
-          }
-          y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
-          width={barWidth}
-          height={2}
-          fill={this.props.chartConfig.color(0.6)}
+          // x={
+          //       paddingRight +
+          //       (i * (width - paddingRight)) / data.length +
+          //       barWidth / 2
+          //     }
+          //     y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
+          // width={barWidth}
+          // height={2}
+          style={{
+            position: "absolute",
+            width: barWidth,
+            height: barWidth,
+            left:
+              paddingRight +
+              (i * (width - paddingRight)) / data.length +
+              barWidth / 2,
+            top: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3
+          }}
+          source={require("../../../../App/Assets/Images/Activities/football.png")}
         />
       );
     });
