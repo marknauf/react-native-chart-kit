@@ -2,6 +2,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import { Svg, Rect, G } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
+import Activity from "./imgs/index";
 
 const barWidth = 32;
 
@@ -38,7 +39,7 @@ class BarChart extends AbstractChart {
   };
 
   renderBarTops = config => {
-    const { data, width, height, paddingTop, paddingRight } = config;
+    const { data, width, height, paddingTop, paddingRight, icons } = config;
     const baseHeight = this.calcBaseHeight(data, height);
     return data.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
@@ -56,7 +57,7 @@ class BarChart extends AbstractChart {
               barWidth / 2,
             top: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3
           }}
-          source={require("../../../../App/Assets/Images/Activities/football.png")}
+          source={Activity.image[icons[i]]}
         />
       );
     });
@@ -138,6 +139,7 @@ class BarChart extends AbstractChart {
             {this.renderBarTops({
               ...config,
               data: data.datasets[0].data,
+              icons: data.icons,
               paddingTop,
               paddingRight
             })}
