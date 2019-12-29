@@ -43,32 +43,9 @@ class BarChart extends AbstractChart {
     return data.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
       const barWidth = 32 * this.getBarPercentage();
-      console.log("BAR HEIGHT: ", barHeight);
-      console.log("BAR WIDTH: ", barWidth);
-      console.log("BASE HEIGHT: ", baseHeight);
       return (
-        // <Rect
-        //   key={Math.random()}
-        //   x={
-        //     paddingRight +
-        //     (i * (width - paddingRight)) / data.length +
-        //     barWidth / 2
-        //   }
-        //   y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
-        //   width={barWidth}
-        //   height={2}
-        //   fill="#00b5ff"
-        // />
         <Image
           key={Math.random()}
-          // x={
-          //       paddingRight +
-          //       (i * (width - paddingRight)) / data.length +
-          //       barWidth / 2
-          //     }
-          //     y={((baseHeight - barHeight) / 4) * 3 + paddingTop}
-          // width={barWidth}
-          // height={2}
           style={{
             position: "absolute",
             width: barWidth,
