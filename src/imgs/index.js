@@ -19,7 +19,27 @@ const activity = {
     Tennis: require("../../../../../App/Assets/Images/Activities/tennis.png"),
     Volleyball: require("../../../../../App/Assets/Images/Activities/volleyball.png"),
     Weightlifting: require("../../../../../App/Assets/Images/Activities/weightlifting.png"),
-    Yoga: require("../../../../../App/Assets/Images/Activities/yoga.png")
+    Yoga: require("../../../../../App/Assets/Images/Activities/yoga.png"),
+    Happy: require("../../../../../App/Assets/Images/Moods/happy.png"),
+    Loved: require("../../../../../App/Assets/Images/Moods/loved.png"),
+    Silly: require("../../../../../App/Assets/Images/Moods/silly.png"),
+    Confident: require("../../../../../App/Assets/Images/Moods/confident.png"),
+    Excited: require("../../../../../App/Assets/Images/Moods/excited.png"),
+    Relaxed: require("../../../../../App/Assets/Images/Moods/relaxed.png"),
+    Confused: require("../../../../../App/Assets/Images/Moods/confused.png"),
+    Bored: require("../../../../../App/Assets/Images/Moods/bored.png"),
+    Tired: require("../../../../../App/Assets/Images/Moods/tired.png"),
+    Frustrated: require("../../../../../App/Assets/Images/Moods/frustrated.png"),
+    Stressed: require("../../../../../App/Assets/Images/Moods/stressed.png"),
+    Nervous: require("../../../../../App/Assets/Images/Moods/nervous.png"),
+    Worried: require("../../../../../App/Assets/Images/Moods/worried.png"),
+    Lonely: require("../../../../../App/Assets/Images/Moods/lonely.png"),
+    Hurt: require("../../../../../App/Assets/Images/Moods/hurt.png"),
+    Sick: require("../../../../../App/Assets/Images/Moods/sick.png"),
+    Angry: require("../../../../../App/Assets/Images/Moods/angry.png"),
+    Afraid: require("../../../../../App/Assets/Images/Moods/afraid.png"),
+    Sad: require("../../../../../App/Assets/Images/Moods/sad.png"),
+    Depressed: require("../../../../../App/Assets/Images/Moods/disappointed.png")
   }
 };
 
