@@ -82,6 +82,7 @@ class ProgressChart extends AbstractChart {
             return (
               <Text
                 key={Math.random()}
+                fill={"#ffffff"}
                 x={this.props.width / 2.5}
                 y={
                   -(this.props.height / 2.5) +
