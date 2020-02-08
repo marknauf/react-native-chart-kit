@@ -8,12 +8,12 @@ const Pie = require("paths-js/pie");
 class ProgressChart extends AbstractChart {
   highColors = [
     "rgba(156, 29, 45, 0.8)",
-    "rgba(32, 29, 47, 0.8)",
+    "rgba(165, 149, 187, 0.8)",
     "rgba(98, 115, 122, 0.8)"
   ];
   lowColors = [
     "rgba(156, 29, 45, 0.2)",
-    "rgba(32, 29, 47, 0.2)",
+    "rgba(165, 149, 187, 0.2)",
     "rgba(98, 115, 122, 0.2)"
   ];
 
@@ -89,7 +89,7 @@ class ProgressChart extends AbstractChart {
                   ((this.props.height * 0.8) / data.data.length) * i +
                   12 * 2
                 }
-                // {...this.getPropsForLabels()}
+                {...this.getPropsForLabels()}
               >
                 {withLabel(i)
                   ? `${data.labels[i]} ${Math.round(100 * data.data[i])}%`
