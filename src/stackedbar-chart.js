@@ -1,7 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { Svg, Rect, G, Text } from "react-native-svg";
+import { Svg, Image, Rect, G, Text } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
+import Activity from "./imgs/index";
 
 const barWidth = 32;
 
@@ -9,6 +10,15 @@ class StackedBarChart extends AbstractChart {
   getBarPercentage = () => {
     const { barPercentage = 1 } = this.props.chartConfig;
     return barPercentage;
+  };
+
+  getPropsForDots = (x, i) => {
+    const { getDotProps, chartConfig = {} } = this.props;
+    if (typeof getDotProps === "function") {
+      return getDotProps(x, i);
+    }
+    const { propsForDots = {} } = chartConfig;
+    return { r: "4", ...propsForDots };
   };
 
   getBarRadius = (ret, x) => {
@@ -25,8 +35,12 @@ class StackedBarChart extends AbstractChart {
       paddingTop,
       paddingRight,
       border,
+      icons,
+      onDataPointClick,
       colors
     } = config;
+    const baseHeight = this.calcBaseHeight(data, height);
+
     return data.map((x, i) => {
       const barWidth = 32 * this.getBarPercentage();
       const ret = [];
@@ -40,6 +54,24 @@ class StackedBarChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2) *
           0.7;
+        const onPress = () => {
+          if (!onDataPointClick) {
+            return;
+          }
+
+          onDataPointClick({
+            index: i,
+            value: x,
+            data,
+            x:
+              paddingRight +
+              (i * (width - paddingRight)) / data.length +
+              barWidth / 2,
+            y: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3,
+            getColor: opacity => this.getColor(data, opacity)
+          });
+        };
+
         ret.push(
           <Rect
             key={Math.random()}
@@ -54,15 +86,26 @@ class StackedBarChart extends AbstractChart {
         );
         if (!this.props.hideLegend) {
           ret.push(
-            <Text
+            <Image
               key={Math.random()}
-              x={xC + 7 + barWidth / 2}
+              // x= { paddingRight +
+              //   (i * (width - paddingRight)) / data.length +
+              //   barWidth / 2}
+              // y= {((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
+              x={
+                (paddingRight +
+                  (i * (width - paddingRight)) / data.length +
+                  barWidth / 2) *
+                0.7
+              }
               textAnchor="end"
-              y={h > 15 ? y + 15 : y + 7}
-              {...this.getPropsForLabels()}
-            >
-              {x[z]}
-            </Text>
+              y={(height / 4) * 3 - h + st - 16}
+              width={32}
+              height={32}
+              href={Activity.image["Baseball"]}
+              onPress={onPress}
+              {...this.getPropsForDots(x, i)}
+            />
           );
         }
 
@@ -107,6 +150,7 @@ class StackedBarChart extends AbstractChart {
       height,
       style = {},
       data,
+      onDataPointClick,
       withHorizontalLabels = true,
       withVerticalLabels = true
     } = this.props;
@@ -174,6 +218,8 @@ class StackedBarChart extends AbstractChart {
               border,
               colors: this.props.data.barColors,
               paddingTop,
+              icons: data.icons,
+              onDataPointClick,
               paddingRight: paddingRight + 20
             })}
           </G>

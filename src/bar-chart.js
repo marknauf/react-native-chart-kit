@@ -1,15 +1,28 @@
 import React from "react";
-import { View, Image } from "react-native";
-import { Svg, Rect, G } from "react-native-svg";
+import { View } from "react-native";
+import { Svg, Rect, G, Image } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
 import Activity from "./imgs/index";
 
 const barWidth = 32;
 
 class BarChart extends AbstractChart {
+  getColor = (dataset, opacity) => {
+    return (dataset.color || this.props.chartConfig.color)(opacity);
+  };
+
   getBarPercentage = () => {
     const { barPercentage = 1 } = this.props.chartConfig;
     return barPercentage;
+  };
+
+  getPropsForDots = (x, i) => {
+    const { getDotProps, chartConfig = {} } = this.props;
+    if (typeof getDotProps === "function") {
+      return getDotProps(x, i);
+    }
+    const { propsForDots = {} } = chartConfig;
+    return { r: "4", ...propsForDots };
   };
 
   renderBars = config => {
@@ -39,25 +52,66 @@ class BarChart extends AbstractChart {
   };
 
   renderBarTops = config => {
-    const { data, width, height, paddingTop, paddingRight, icons } = config;
+    const {
+      data,
+      width,
+      height,
+      paddingTop,
+      paddingRight,
+      icons,
+      onDataPointClick
+    } = config;
     const baseHeight = this.calcBaseHeight(data, height);
     return data.map((x, i) => {
       const barHeight = this.calcHeight(x, data, height);
       const barWidth = 32 * this.getBarPercentage();
+      const onPress = () => {
+        if (!onDataPointClick) {
+          return;
+        }
+
+        onDataPointClick({
+          index: i,
+          value: x,
+          data,
+          x:
+            paddingRight +
+            (i * (width - paddingRight)) / data.length +
+            barWidth / 2,
+          y: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3,
+          getColor: opacity => this.getColor(data, opacity)
+        });
+      };
+
       return (
         <Image
           key={Math.random()}
-          style={{
-            position: "absolute",
-            width: barWidth,
-            height: barWidth,
-            left:
-              paddingRight +
-              (i * (width - paddingRight)) / data.length +
-              barWidth / 2,
-            top: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3
-          }}
-          source={Activity.image[icons[i]]}
+          // style={{
+          //   position: "absolute",
+          //   width: barWidth,
+          //   height: barWidth,
+          //   left:
+          //     paddingRight +
+          //     (i * (width - paddingRight)) / data.length +
+          //     barWidth / 2,
+          //   top: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3
+          // }}
+          x={
+            paddingRight +
+            (i * (width - paddingRight)) / data.length +
+            barWidth / 2
+          }
+          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
+          width={32}
+          height={32}
+          // fill={
+          //   typeof getDotColor === "function"
+          //     ? getDotColor(x, i)
+          //     : this.getColor(dataset, 0.9)
+          // }
+          href={Activity.image[icons[i]]}
+          onPress={onPress}
+          {...this.getPropsForDots(x, i)}
         />
       );
     });
@@ -67,6 +121,7 @@ class BarChart extends AbstractChart {
     const {
       width,
       height,
+      onDataPointClick,
       data,
       style = {},
       withHorizontalLabels = true,
@@ -141,6 +196,7 @@ class BarChart extends AbstractChart {
               ...config,
               data: data.datasets[0].data,
               icons: data.icons,
+              onDataPointClick,
               paddingTop,
               paddingRight
             })}
