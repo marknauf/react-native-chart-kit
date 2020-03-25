@@ -72,26 +72,22 @@ class StackedBarChart extends AbstractChart {
           });
         };
 
-        ret.push(
-          <Rect
-            key={Math.random()}
-            x={xC}
-            y={y}
-            rx={this.getBarRadius(ret, x)}
-            ry={this.getBarRadius(ret, x)}
-            width={barWidth}
-            height={h}
-            fill={colors[z]}
-          />
-        );
+        // ret.push(
+        //   <Rect
+        //     key={Math.random()}
+        //     x={xC}
+        //     y={y}
+        //     rx={this.getBarRadius(ret, x)}
+        //     ry={this.getBarRadius(ret, x)}
+        //     width={barWidth}
+        //     height={h}
+        //     fill={colors[z]}
+        //   />
+        // );
         if (!this.props.hideLegend) {
           ret.push(
             <Image
               key={Math.random()}
-              // x= { paddingRight +
-              //   (i * (width - paddingRight)) / data.length +
-              //   barWidth / 2}
-              // y= {((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
               x={
                 (paddingRight +
                   (i * (width - paddingRight)) / data.length +
