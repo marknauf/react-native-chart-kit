@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { View } from "react-native";
 import { Svg, Image, Rect, G, Text } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
@@ -36,6 +36,7 @@ class StackedBarChart extends AbstractChart {
       paddingRight,
       border,
       icons,
+      texts,
       onDataPointClick,
       colors
     } = config;
@@ -86,22 +87,42 @@ class StackedBarChart extends AbstractChart {
         // );
         if (!this.props.hideLegend) {
           ret.push(
-            <Image
-              key={Math.random()}
-              x={
-                (paddingRight +
-                  (i * (width - paddingRight)) / data.length +
-                  barWidth / 2) *
-                0.7
-              }
-              textAnchor="end"
-              y={(height / 4) * 3 - h + st - 16}
-              width={32}
-              height={32}
-              href={Activity.image["Baseball"]}
-              onPress={onPress}
-              {...this.getPropsForDots(x, i)}
-            />
+            <Fragment key={Math.random()}>
+              <Image
+                x={
+                  (paddingRight +
+                    (i * (width - paddingRight)) / data.length +
+                    barWidth / 2) *
+                  0.7
+                }
+                textAnchor="end"
+                y={(height / 4) * 3 - h + st - 16}
+                width={32}
+                height={32}
+                href={Activity.image[icons[i]]}
+                onPress={onPress}
+                {...this.getPropsForDots(x, i)}
+              />
+              <Text
+                // key={Math.random()}
+                // style={{fontSize: 8}}
+                fill="white"
+                fontSize="8"
+                // {...this.getPropsForLabels()}
+                x={
+                  (paddingRight +
+                    (i * (width - paddingRight)) / data.length +
+                    barWidth / 2) *
+                  0.7
+                }
+                textAnchor="center"
+                y={(height / 4) * 3 - h + st - 16}
+                width={32}
+                height={32}
+              >
+                {texts[i]}
+              </Text>
+            </Fragment>
           );
         }
 
@@ -215,6 +236,7 @@ class StackedBarChart extends AbstractChart {
               colors: this.props.data.barColors,
               paddingTop,
               icons: data.icons,
+              texts: data.texts,
               onDataPointClick,
               paddingRight: paddingRight + 20
             })}
