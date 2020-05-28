@@ -86,29 +86,14 @@ class BarChart extends AbstractChart {
       return (
         <Image
           key={Math.random()}
-          // style={{
-          //   position: "absolute",
-          //   width: barWidth,
-          //   height: barWidth,
-          //   left:
-          //     paddingRight +
-          //     (i * (width - paddingRight)) / data.length +
-          //     barWidth / 2,
-          //   top: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3
-          // }}
           x={
             paddingRight +
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
+          y={60}
           width={32}
           height={32}
-          // fill={
-          //   typeof getDotColor === "function"
-          //     ? getDotColor(x, i)
-          //     : this.getColor(dataset, 0.9)
-          // }
           href={Activity.image[icons[i]]}
           onPress={onPress}
           {...this.getPropsForDots(x, i)}

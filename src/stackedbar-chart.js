@@ -4,7 +4,7 @@ import { Svg, Image, Rect, G, Text } from "react-native-svg";
 import AbstractChart from "./abstract-chart";
 import Activity from "./imgs/index";
 
-const barWidth = 32;
+const barWidth = 16;
 
 class StackedBarChart extends AbstractChart {
   getBarPercentage = () => {
@@ -40,14 +40,23 @@ class StackedBarChart extends AbstractChart {
       onDataPointClick,
       colors
     } = config;
-    const baseHeight = this.calcBaseHeight(data, height);
+
+    const dataArray = [];
 
     return data.map((x, i) => {
+      for (let z = 0; z < x.length; z++) {
+        dataArray.push(x[z]);
+      }
+      const baseHeight = this.calcBaseHeight(dataArray, height);
       const barWidth = 32 * this.getBarPercentage();
       const ret = [];
       let h = 0;
       let st = paddingTop;
       for (let z = 0; z < x.length; z++) {
+        console.log(
+          "WOO ",
+          ((baseHeight - this.calcHeight(x[z], dataArray, height)) / 4) * 3 + 0
+        );
         h = (height - 55) * (x[z] / border);
         const y = (height / 4) * 3 - h + st;
         const xC =
@@ -96,10 +105,15 @@ class StackedBarChart extends AbstractChart {
                   0.7
                 }
                 textAnchor="end"
-                y={(height / 4) * 3 - h + st - 16}
-                width={32}
-                height={32}
-                href={Activity.image[icons[i]]}
+                y={
+                  ((baseHeight - this.calcHeight(x[z], dataArray, height)) /
+                    4) *
+                    3 +
+                  0
+                }
+                width={16}
+                height={16}
+                href={Activity.image[icons[i][z]]}
                 onPress={onPress}
                 {...this.getPropsForDots(x, i)}
               />
@@ -107,20 +121,26 @@ class StackedBarChart extends AbstractChart {
                 // key={Math.random()}
                 // style={{fontSize: 8}}
                 fill="white"
-                fontSize="8"
+                fontSize="6"
                 // {...this.getPropsForLabels()}
                 x={
                   (paddingRight +
                     (i * (width - paddingRight)) / data.length +
                     barWidth / 2) *
-                  0.7
+                    0.7 +
+                  -3
                 }
                 textAnchor="center"
-                y={(height / 4) * 3 - h + st - 16}
-                width={32}
-                height={32}
+                y={
+                  ((baseHeight - this.calcHeight(x[z], dataArray, height)) /
+                    4) *
+                    3 +
+                  22
+                }
+                width={16}
+                height={16}
               >
-                {texts[i]}
+                {texts[i][z]}
               </Text>
             </Fragment>
           );
@@ -178,7 +198,7 @@ class StackedBarChart extends AbstractChart {
     };
     let border = 0;
     for (let i = 0; i < data.data.length; i++) {
-      const actual = data.data[i].reduce((pv, cv) => pv + cv, 0);
+      const actual = data.data[i].reduce((pv, cv) => cv, 0);
       if (actual > border) {
         border = actual;
       }
