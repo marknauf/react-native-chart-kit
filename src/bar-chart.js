@@ -91,7 +91,7 @@ class BarChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={60}
+          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
           width={32}
           height={32}
           href={Activity.image[icons[i]]}

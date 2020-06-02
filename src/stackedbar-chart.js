@@ -41,22 +41,16 @@ class StackedBarChart extends AbstractChart {
       colors
     } = config;
 
-    const dataArray = [];
-
     return data.map((x, i) => {
-      for (let z = 0; z < x.length; z++) {
-        dataArray.push(x[z]);
-      }
-      const baseHeight = this.calcBaseHeight(dataArray, height);
+      // for (let z = 0; z < x.length; z++) {
+      //   dataArray.push(x[z])
+      // }
+      const baseHeight = this.calcBaseHeight([0, 24], height);
       const barWidth = 32 * this.getBarPercentage();
       const ret = [];
       let h = 0;
       let st = paddingTop;
       for (let z = 0; z < x.length; z++) {
-        console.log(
-          "WOO ",
-          ((baseHeight - this.calcHeight(x[z], dataArray, height)) / 4) * 3 + 0
-        );
         h = (height - 55) * (x[z] / border);
         const y = (height / 4) * 3 - h + st;
         const xC =
@@ -106,8 +100,7 @@ class StackedBarChart extends AbstractChart {
                 }
                 textAnchor="end"
                 y={
-                  ((baseHeight - this.calcHeight(x[z], dataArray, height)) /
-                    4) *
+                  ((baseHeight - this.calcHeight(x[z], [0, 24], height)) / 4) *
                     3 +
                   0
                 }
@@ -132,8 +125,7 @@ class StackedBarChart extends AbstractChart {
                 }
                 textAnchor="center"
                 y={
-                  ((baseHeight - this.calcHeight(x[z], dataArray, height)) /
-                    4) *
+                  ((baseHeight - this.calcHeight(x[z], [0, 24], height)) / 4) *
                     3 +
                   22
                 }
