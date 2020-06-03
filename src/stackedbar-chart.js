@@ -65,7 +65,7 @@ class StackedBarChart extends AbstractChart {
 
           onDataPointClick({
             index: i,
-            value: x,
+            value: icons[i][z],
             data,
             x:
               paddingRight +

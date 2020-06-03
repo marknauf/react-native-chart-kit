@@ -1,12 +1,12 @@
 import React from "react";
 import { View } from "react-native";
 import { Svg, Rect, G, Image } from "react-native-svg";
-import AbstractChart from "./abstract-chart";
-import Activity from "./imgs/index";
+import AbstractChart from "@marknauf/react-native-chart-kit/src/abstract-chart";
+import Activity from "@marknauf/react-native-chart-kit/src/imgs";
 
 const barWidth = 32;
 
-class BarChart extends AbstractChart {
+class MoodChart extends AbstractChart {
   getColor = (dataset, opacity) => {
     return (dataset.color || this.props.chartConfig.color)(opacity);
   };
@@ -39,10 +39,7 @@ class BarChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={
-            ((barHeight > 0 ? baseHeight - barHeight : baseHeight) / 4) * 3 +
-            paddingTop
-          }
+          y={60}
           width={barWidth}
           height={(Math.abs(barHeight) / 4) * 3}
           fill="url(#fillShadowGradient)"
@@ -78,7 +75,7 @@ class BarChart extends AbstractChart {
             paddingRight +
             (i * (width - paddingRight)) / data.length +
             barWidth / 2,
-          y: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3,
+          y: 60,
           getColor: opacity => this.getColor(data, opacity)
         });
       };
@@ -91,7 +88,7 @@ class BarChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
+          y={60}
           width={32}
           height={32}
           href={Activity.image[icons[i]]}
@@ -192,4 +189,4 @@ class BarChart extends AbstractChart {
   }
 }
 
-export default BarChart;
+export default MoodChart;
