@@ -113,7 +113,7 @@ class StackedBarChart extends AbstractChart {
               <Text
                 // key={Math.random()}
                 // style={{fontSize: 8}}
-                fill="white"
+                fill="#343649"
                 fontSize="6"
                 // {...this.getPropsForLabels()}
                 x={
