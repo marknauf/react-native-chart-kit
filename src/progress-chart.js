@@ -7,14 +7,14 @@ const Pie = require("paths-js/pie");
 
 class ProgressChart extends AbstractChart {
   highColors = [
-    "rgba(156, 29, 45, 0.8)",
-    "rgba(165, 149, 187, 0.8)",
-    "rgba(98, 115, 122, 0.8)"
+    "rgba(207, 148, 125, 0.8)",
+    "rgba(133, 175, 173, 0.8)",
+    "rgba(99, 117, 128, 0.8)"
   ];
   lowColors = [
-    "rgba(156, 29, 45, 0.2)",
-    "rgba(165, 149, 187, 0.2)",
-    "rgba(98, 115, 122, 0.2)"
+    "rgba(207, 148, 125, 0.2)",
+    "rgba(133, 175, 173, 0.2)",
+    "rgba(99, 117, 128, 0.2)"
   ];
 
   render() {
