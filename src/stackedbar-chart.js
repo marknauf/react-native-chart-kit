@@ -104,8 +104,8 @@ class StackedBarChart extends AbstractChart {
                     3 +
                   0
                 }
-                width={16}
-                height={16}
+                width={20}
+                height={20}
                 href={Activity.image[icons[i][z]]}
                 onPress={onPress}
                 {...this.getPropsForDots(x, i)}
@@ -114,7 +114,7 @@ class StackedBarChart extends AbstractChart {
                 // key={Math.random()}
                 // style={{fontSize: 8}}
                 fill="#343649"
-                fontSize="6"
+                fontSize="8"
                 // {...this.getPropsForLabels()}
                 x={
                   (paddingRight +
@@ -127,10 +127,10 @@ class StackedBarChart extends AbstractChart {
                 y={
                   ((baseHeight - this.calcHeight(x[z], [0, 24], height)) / 4) *
                     3 +
-                  22
+                  28
                 }
-                width={16}
-                height={16}
+                width={20}
+                height={20}
               >
                 {texts[i][z]}
               </Text>
@@ -210,13 +210,23 @@ class StackedBarChart extends AbstractChart {
             ry={borderRadius}
             fill="url(#backgroundGradient)"
           />
-          <G>
+          {/* <G>
             {this.renderHorizontalLines({
               ...config,
               count: 4,
               paddingTop
             })}
-          </G>
+          </G> */}
+
+            {/* <G>     
+            {this.renderVerticalLines({
+                    ...config,
+                    data: data.data,
+                    paddingTop,
+                    paddingRight
+                  })}
+          </G> */}
+
           <G>
             {withHorizontalLabels
               ? this.renderHorizontalLabels({
