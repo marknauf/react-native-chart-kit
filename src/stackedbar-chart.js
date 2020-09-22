@@ -104,8 +104,8 @@ class StackedBarChart extends AbstractChart {
                     3 +
                   0
                 }
-                width={20}
-                height={20}
+                width={16}
+                height={16}
                 href={Activity.image[icons[i][z]]}
                 onPress={onPress}
                 {...this.getPropsForDots(x, i)}
@@ -114,7 +114,7 @@ class StackedBarChart extends AbstractChart {
                 // key={Math.random()}
                 // style={{fontSize: 8}}
                 fill="#343649"
-                fontSize="8"
+                fontSize="6"
                 // {...this.getPropsForLabels()}
                 x={
                   (paddingRight +
@@ -129,8 +129,8 @@ class StackedBarChart extends AbstractChart {
                     3 +
                   28
                 }
-                width={20}
-                height={20}
+                width={16}
+                height={16}
               >
                 {texts[i][z]}
               </Text>
