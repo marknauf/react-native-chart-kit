@@ -122,7 +122,7 @@ class BarChart extends AbstractChart {
       height,
       verticalLabelRotation,
       horizontalLabelRotation,
-      decimalPlaces: (this.props.chartConfig && this.props.chartConfig.decimalPlaces) || 2
+      decimalPlaces: (this.props.chartConfig && this.props.chartConfig.decimalPlaces) || 0
     };
     return (
       <View style={style}>
