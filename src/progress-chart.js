@@ -67,10 +67,12 @@ class ProgressChart extends AbstractChart {
                 fill={this.highColors[i]}
                 rx={8}
                 ry={8}
-                x={this.props.width / 2.5 - 24}
+                x={this.props.width / 2.5 - 24 +
+                  ((this.props.width * 0.8) / data.data.length) * i +
+                  12 * 2}
                 y={
                   -(this.props.height / 2.5) +
-                  ((this.props.height * 0.8) / data.data.length) * i +
+                  ((this.props.height * 0.8) / data.data.length) +
                   12
                 }
               />
@@ -83,10 +85,18 @@ class ProgressChart extends AbstractChart {
               <Text
                 key={Math.random()}
                 fill={"#ffffff"}
-                x={this.props.width / 2.5}
+                // x={this.props.width / 2.5}
+                // y={
+                //   -(this.props.height / 2.5) +
+                //   ((this.props.height * 0.8) / data.data.length) * i +
+                //   12 * 2
+                // }
+                x={this.props.width / 2.5 +
+                  ((this.props.width * 0.8) / data.data.length) * i +
+                  12 * 2}
                 y={
                   -(this.props.height / 2.5) +
-                  ((this.props.height * 0.8) / data.data.length) * i +
+                  ((this.props.height * 0.8) / data.data.length) +
                   12 * 2
                 }
                 {...this.getPropsForLabels()}
@@ -123,14 +133,14 @@ class ProgressChart extends AbstractChart {
             ry={borderRadius}
             fill="url(#backgroundGradient)"
           />
-          <G x={this.props.width / 2.5} y={this.props.height / 2}>
+          <G x={this.props.width / 1.75} y={this.props.height / 2}>
             <G>
               {pieBackgrounds.map((pie, i) => {
                 return (
                   <Path
                     key={Math.random()}
                     d={pie.curves[0].sector.path.print()}
-                    strokeWidth={16}
+                    strokeWidth={30}
                     stroke={this.lowColors[i]}
                   />
                 );
@@ -144,15 +154,19 @@ class ProgressChart extends AbstractChart {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d={pie.curves[0].sector.path.print()}
-                    strokeWidth={16}
+                    strokeWidth={30}
                     stroke={this.highColors[i]}
                   />
                 );
               })}
             </G>
-            {legend}
           </G>
         </Svg>
+        <Svg width={width} height={height}>
+        <G x={this.props.width / 10 - 120 } y={this.props.height / 8}>
+          {legend}
+          </G>
+          </Svg>
       </View>
     );
   }
