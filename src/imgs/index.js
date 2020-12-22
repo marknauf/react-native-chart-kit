@@ -40,7 +40,7 @@ const activity = {
     Hurt: require('../../../../../App/Assets/Images/Moods/hurt.png'),
     Sick: require('../../../../../App/Assets/Images/Moods/sick.png'),
     Angry: require('../../../../../App/Assets/Images/Moods/angry.png'),
-    Sad: require('../../../../../App/Assets/Images/Moods/sad.png'),
+    Mad: require('../../../../../App/Assets/Images/Moods/sad.png'),
     Depressed: require('../../../../../App/Assets/Images/Moods/depressed.png'),
     Overwhelmed: require('../../../../../App/Assets/Images/Moods/overwhelmed.png'),
     Hopeful: require('../../../../../App/Assets/Images/Moods/hopeful.png'),
