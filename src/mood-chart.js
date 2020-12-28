@@ -113,7 +113,7 @@ class MoodChart extends AbstractChart {
       withInnerLines = true,
       segments = 4
     } = this.props;
-    const { borderRadius = 0, paddingTop = 16, paddingRight = 64 } = style;
+    const { borderRadius = 0, paddingTop = 16, paddingRight = 16 } = style;
     const config = {
       width,
       height,
