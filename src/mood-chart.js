@@ -39,7 +39,7 @@ class MoodChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={60}
+          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
           width={barWidth}
           height={(Math.abs(barHeight) / 4) * 3}
           fill="url(#fillShadowGradient)"
@@ -75,7 +75,7 @@ class MoodChart extends AbstractChart {
             paddingRight +
             (i * (width - paddingRight)) / data.length +
             barWidth / 2,
-          y: 60,
+          y: ((baseHeight - this.calcHeight(x, data, height)) / 4) * 3,
           getColor: opacity => this.getColor(data, opacity)
         });
       };
@@ -88,7 +88,7 @@ class MoodChart extends AbstractChart {
             (i * (width - paddingRight)) / data.length +
             barWidth / 2
           }
-          y={60}
+          y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
           width={32}
           height={32}
           href={Activity.image[icons[i]]}
@@ -165,14 +165,14 @@ class MoodChart extends AbstractChart {
                 })
               : null}
           </G>
-          <G>
+          {/* <G>
             {this.renderBars({
               ...config,
               data: data.datasets[0].data,
               paddingTop,
               paddingRight
             })}
-          </G>
+          </G> */}
           <G>
             {this.renderBarTops({
               ...config,
