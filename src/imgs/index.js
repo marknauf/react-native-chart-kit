@@ -19,7 +19,7 @@ const activity = {
     Volleyball: require('../../../../../App/Assets/Images/Activities/volleyball.png'),
     Weightlifting: require('../../../../../App/Assets/Images/Activities/weightlifting.png'),
     Yoga: require('../../../../../App/Assets/Images/Activities/yoga.png'),
-    JumpRope: require('../../../../../App/Assets/Images/Activities/jumprope.png'),
+    Dance: require('../../../../../App/Assets/Images/Activities/dance.png'),
     Hike: require('../../../../../App/Assets/Images/Activities/hike.png'),
     Walk: require('../../../../../App/Assets/Images/Activities/walk.png'),
     MartialArts: require('../../../../../App/Assets/Images/Activities/martialarts.png'),
