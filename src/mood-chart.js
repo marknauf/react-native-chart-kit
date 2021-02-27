@@ -89,8 +89,8 @@ class MoodChart extends AbstractChart {
             barWidth / 2
           }
           y={((baseHeight - this.calcHeight(x, data, height)) / 4) * 3}
-          width={32}
-          height={32}
+          width={40}
+          height={40}
           href={Activity.image[icons[i]]}
           onPress={onPress}
           {...this.getPropsForDots(x, i)}

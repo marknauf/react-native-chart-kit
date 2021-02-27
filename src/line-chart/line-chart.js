@@ -214,7 +214,7 @@ class LineChart extends AbstractChart {
           key={index}
           d={result}
           fill="none"
-          stroke={this.getColor(dataset, 0.2)}
+          stroke={this.getColor(dataset, 0.8)}
           strokeWidth={this.getStrokeWidth(dataset)}
         />
       );
