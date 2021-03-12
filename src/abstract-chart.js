@@ -287,13 +287,14 @@ class AbstractChart extends Component {
           y1={0}
           x2={0}
           y2={height}
+          gradientUnits="userSpaceOnUse"
         >
           <Stop
             offset="0"
             stopColor={fillShadowGradient}
             stopOpacity={fillShadowGradientOpacity}
           />
-          <Stop offset="1" stopColor={fillShadowGradient} stopOpacity="0" />
+          <Stop offset="1" stopColor='#F0F2F3' stopOpacity="0" />
         </LinearGradient>
       </Defs>
     );
