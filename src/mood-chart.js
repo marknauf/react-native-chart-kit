@@ -57,6 +57,7 @@ class MoodChart extends AbstractChart {
       paddingRight,
       icons,
       labels,
+      entries,
       onDataPointClick
     } = config;
     const baseHeight = this.calcBaseHeight(data, height);
@@ -72,6 +73,7 @@ class MoodChart extends AbstractChart {
           index: i,
           value: icons[i],
           time: labels[i],
+          entry: entries[i],
           data,
           x:
             paddingRight +
@@ -181,6 +183,7 @@ class MoodChart extends AbstractChart {
               data: data.datasets[0].data,
               icons: data.icons,
               labels: data.labels,
+              entries: data.entries,
               onDataPointClick,
               paddingTop,
               paddingRight
